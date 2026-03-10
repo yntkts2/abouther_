@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>About Dinda Ayu Lestari</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka:wght@400;500&family=Quicksand:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:'Fredoka',sans-serif;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+overflow-x:hidden;
+background:linear-gradient(120deg,#e9ddff,#d6eaff,#f6e8ff,#dff4ff);
+background-size:400% 400%;
+animation:bgMove 18s ease infinite;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+position:relative;
+z-index:2;
+background:rgba(255,255,255,0.35);
+backdrop-filter:blur(18px);
+padding:45px;
+border-radius:28px;
+box-shadow:0 20px 45px rgba(0,0,0,0.15);
+max-width:760px;
+}
+
+/* TITLE */
+
+.magic-title{
+font-family:'Pacifico',cursive;
+font-size:44px;
+color:#7b6dff;
+margin-bottom:10px;
+}
+
+.magic-letter{
+opacity:0;
+display:inline-block;
+transform:translateY(20px);
+animation:magicAppear .6s forwards;
+}
+
+@keyframes magicAppear{
+0%{opacity:0;transform:translateY(20px);filter:blur(6px)}
+100%{opacity:1;transform:translateY(0);filter:blur(0);text-shadow:0 0 12px #d7b7ff}
+}
+
+/* DESCRIPTION */
+
+#desc{
+font-family:'Quicksand',sans-serif;
+font-weight:600;
+font-size:18px;
+line-height:1.7;
+min-height:120px;
+color:#444;
+}
+
+/* PHOTOS */
+
+.photos{
+margin-top:40px;
+display:flex;
+justify-content:center;
+gap:35px;
+flex-wrap:wrap;
+}
+
+.hanger{
+animation:swing 6s ease-in-out infinite;
+transform-origin:top center;
+}
+
+@keyframes swing{
+0%{transform:rotate(-3deg)}
+50%{transform:rotate(3deg)}
+100%{transform:rotate(-3deg)}
+}
+
+.polaroid{
+background:white;
+padding:10px 10px 25px 10px;
+border-radius:10px;
+box-shadow:0 12px 22px rgba(0,0,0,0.2);
+opacity:0;
+transform:translateY(30px);
+transition:.25s;
+position:relative;
+}
+
+.polaroid:hover{
+transform:scale(1.05) rotate(-2deg);
+}
+
+.polaroid::before{
+content:"";
+position:absolute;
+width:60px;
+height:18px;
+background:#ffe6f7;
+top:-10px;
+left:50%;
+transform:translateX(-50%) rotate(-2deg);
+border-radius:4px;
+}
+
+.polaroid.show{
+animation:photoAppear .9s forwards;
+}
+
+@keyframes photoAppear{
+to{opacity:1;transform:translateY(0)}
+}
+
+.polaroid img{
+width:150px;
+height:150px;
+object-fit:cover;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* COUNTDOWN */
+
+.countdown{
+margin-top:45px;
+padding:20px;
+border-radius:20px;
+background:rgba(255,255,255,0.45);
+}
+
+.countdown h2{
+font-size:26px;
+color:#7a6cff;
+margin-bottom:10px;
+}
+
+.time{
+font-size:24px;
+color:#333;
+font-family:'Fredoka';
+}
+
+/* HEART BACKGROUND */
+
+.heart{
+position:fixed;
+animation:float 8s linear infinite;
+pointer-events:none;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh) scale(.5);opacity:0}
+30%{opacity:1}
+70%{opacity:1}
+100%{transform:translateY(-10vh) scale(1.2);opacity:0}
+}
+
+/* LOVE EXPLOSION */
+
+.blueHeart{
+position:fixed;
+font-size:22px;
+pointer-events:none;
+z-index:999;
+animation:explode 1.6s ease forwards;
+}
+
+@keyframes explode{
+0%{transform:translate(0,0) scale(.5);opacity:0}
+20%{opacity:1}
+100%{transform:translate(var(--x),var(--y)) scale(1.3);opacity:0}
+}
+
+/* SPARKLE */
+
+.sparkle{
+position:fixed;
+font-size:14px;
+pointer-events:none;
+animation:sparkleAnim 1.4s ease-out forwards;
+}
+
+@keyframes sparkleAnim{
+0%{transform:scale(.3);opacity:0}
+20%{opacity:1}
+100%{transform:scale(1.6);opacity:0}
+}
+
+/* FLOWER TRAIL */
+
+.flowerTrail{
+position:fixed;
+pointer-events:none;
+animation:flowerFade 1.2s ease forwards;
+}
+
+@keyframes flowerFade{
+0%{transform:scale(.6);opacity:1}
+100%{transform:scale(1.6) translateY(-20px);opacity:0}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container" id="question">
+<h1 id="questionText">💌 </h1>
+</div>
+
+<div class="container" id="main" style="display:none">
+
+<h1 class="magic-title" id="title"></h1>
+
+<p id="desc"></p>
+
+<div class="photos">
+<div class="hanger"><div class="polaroid"><img src="mylove1.jpeg" onclick="loveExplosion(event)"></div></div>
+<div class="hanger"><div class="polaroid"><img src="mylove2.jpeg" onclick="loveExplosion(event)"></div></div>
+<div class="hanger"><div class="polaroid"><img src="mylove3.jpeg" onclick="loveExplosion(event)"></div></div>
+</div>
+
+<div class="countdown">
+<h2>💞 We've been together for 💞</h2>
+<div class="time" id="timeTogether"></div>
+</div>
+
+</div>
+
+<script>
+
+const intro="Do you know who Dinda Ayu Lestari is? 💖";
+let i=0;
+
+function typeIntro(){
+if(i<intro.length){
+document.getElementById("questionText").innerHTML+=intro.charAt(i);
+i++;
+setTimeout(typeIntro,60);
+}else{
+setTimeout(showMain,3000);
+}
+}
+
+typeIntro();
+
+function showMain(){
+document.getElementById("question").style.display="none";
+document.getElementById("main").style.display="block";
+showTitle();
+}
+
+const titleText="About Dinda Ayu Lestari ✨";
+
+function showTitle(){
+
+const title=document.getElementById("title");
+
+titleText.split("").forEach((l,i)=>{
+let span=document.createElement("span");
+span.className="magic-letter";
+span.innerHTML=l===" "?"&nbsp;":l;
+span.style.animationDelay=i*0.08+"s";
+title.appendChild(span);
+});
+
+setTimeout(typeDesc,2000);
+
+}
+
+const descText=`Dinda Ayu Lestari is a beautiful girl who was born in Banyuwangi on January 1, 2009.
+In a way, her birth is celebrated by almost everyone in the world.
+She is truly beautiful. If you don’t think so, maybe you should go see an eye doctor, because I think something might be wrong with your eyes.
+I love her very much, and I will always love her ✨💞`;
+
+let d=0;
+
+function typeDesc(){
+const desc=document.getElementById("desc");
+
+function typing(){
+if(d<descText.length){
+desc.innerHTML+=descText.charAt(d);
+d++;
+setTimeout(typing,25);
+}else{
+showPhotos();
+}
+}
+
+typing();
+}
+
+function showPhotos(){
+document.querySelectorAll(".polaroid").forEach((p,i)=>{
+setTimeout(()=>p.classList.add("show"),600*i);
+});
+}
+
+const startDate=new Date("August 18, 2024 00:00:00");
+
+function updateCountdown(){
+const now=new Date();
+const diff=now-startDate;
+
+const days=Math.floor(diff/(1000*60*60*24));
+const hours=Math.floor((diff/(1000*60*60))%24);
+const minutes=Math.floor((diff/(1000*60))%60);
+const seconds=Math.floor((diff/1000)%60);
+
+document.getElementById("timeTogether").innerHTML=
+days+" days 💗 "+hours+" hours 💗 "+minutes+" minutes 💗 "+seconds+" seconds";
+}
+
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+function createHeart(){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💜";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(18+Math.random()*20)+"px";
+heart.style.animationDuration=(6+Math.random()*4)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),9000);
+}
+
+setInterval(createHeart,700);
+
+function loveExplosion(e){
+
+const rect=e.target.getBoundingClientRect();
+const cx=rect.left+rect.width/2;
+const cy=rect.top+rect.height/2;
+
+for(let i=0;i<16;i++){
+
+const heart=document.createElement("div");
+heart.className="blueHeart";
+heart.innerHTML="💙";
+
+const angle=Math.random()*2*Math.PI;
+const distance=120;
+
+heart.style.left=cx+"px";
+heart.style.top=cy+"px";
+
+heart.style.setProperty("--x",Math.cos(angle)*distance+"px");
+heart.style.setProperty("--y",Math.sin(angle)*distance+"px");
+
+document.body.appendChild(heart);
+
+createSparkle(cx,cy);
+
+setTimeout(()=>heart.remove(),1600);
+}
+}
+
+function createSparkle(x,y){
+const s=document.createElement("div");
+s.className="sparkle";
+s.innerHTML="✨";
+s.style.left=(x+Math.random()*80-40)+"px";
+s.style.top=(y+Math.random()*80-40)+"px";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),1400);
+}
+
+function createFlower(x,y){
+const f=document.createElement("div");
+f.className="flowerTrail";
+f.innerHTML="🌸";
+f.style.left=x+"px";
+f.style.top=y+"px";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),1200);
+}
+
+document.addEventListener("mousemove",e=>{
+createFlower(e.clientX,e.clientY);
+});
+
+document.addEventListener("touchmove",e=>{
+let t=e.touches[0];
+createFlower(t.clientX,t.clientY);
+});
+
+</script>
+
+</body>
+</html>
