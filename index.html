@@ -83,6 +83,7 @@ display:flex;
 justify-content:center;
 gap:35px;
 flex-wrap:wrap;
+align-items:flex-start;
 }
 
 .hanger{
@@ -98,7 +99,7 @@ transform-origin:top center;
 
 .polaroid{
 background:white;
-padding:10px;
+padding:10px 10px 25px 10px;
 border-radius:10px;
 box-shadow:0 12px 22px rgba(0,0,0,0.2);
 opacity:0;
@@ -106,6 +107,8 @@ transform:translateY(30px);
 transition:.25s;
 position:relative;
 display:inline-block;
+flex-shrink:0;
+width:fit-content;
 }
 
 .polaroid:hover{
@@ -133,8 +136,9 @@ to{opacity:1;transform:translateY(0)}
 }
 
 .polaroid img{
-max-width:100%;
+width:auto;
 height:auto;
+max-width:100%;
 border-radius:6px;
 cursor:pointer;
 display:block;
@@ -167,8 +171,9 @@ font-family:'Fredoka';
 position:fixed;
 animation:float 8s linear infinite;
 pointer-events:none;
+z-index:0;
 }
-
+  
 @keyframes float{
 0%{transform:translateY(100vh) scale(.5);opacity:0}
 30%{opacity:1}
@@ -199,6 +204,7 @@ position:fixed;
 font-size:14px;
 pointer-events:none;
 animation:sparkleAnim 1.4s ease-out forwards;
+z-index:999;
 }
 
 @keyframes sparkleAnim{
@@ -213,6 +219,8 @@ animation:sparkleAnim 1.4s ease-out forwards;
 position:fixed;
 pointer-events:none;
 animation:flowerFade 1.2s ease forwards;
+z-index:999;
+font-size:20px;
 }
 
 @keyframes flowerFade{
@@ -381,4 +389,5 @@ updateCountdown();
 
 </body>
 </html>
+
 
