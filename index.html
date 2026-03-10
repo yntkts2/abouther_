@@ -98,13 +98,14 @@ transform-origin:top center;
 
 .polaroid{
 background:white;
-padding:10px 10px 25px 10px;
+padding:10px;
 border-radius:10px;
 box-shadow:0 12px 22px rgba(0,0,0,0.2);
 opacity:0;
 transform:translateY(30px);
 transition:.25s;
 position:relative;
+display:inline-block;
 }
 
 .polaroid:hover{
@@ -237,7 +238,12 @@ font-size:16px;
 
 .photos{
 flex-direction:column;
-gap:25px;
+align-items:center;
+gap:30px;
+}
+
+.polaroid{
+max-width:90%;
 }
 
 .polaroid img{
@@ -375,3 +381,4 @@ updateCountdown();
 
 </body>
 </html>
+
