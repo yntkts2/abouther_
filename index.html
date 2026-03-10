@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>About Dinda Ayu Lestari</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka:wght@400;500&family=Quicksand:wght@500;600&display=swap" rel="stylesheet">
@@ -20,6 +22,7 @@ overflow-x:hidden;
 background:linear-gradient(120deg,#e9ddff,#d6eaff,#f6e8ff,#dff4ff);
 background-size:400% 400%;
 animation:bgMove 18s ease infinite;
+padding:20px;
 }
 
 @keyframes bgMove{
@@ -37,6 +40,7 @@ padding:45px;
 border-radius:28px;
 box-shadow:0 20px 45px rgba(0,0,0,0.15);
 max-width:760px;
+width:100%;
 }
 
 /* TITLE */
@@ -128,11 +132,11 @@ to{opacity:1;transform:translateY(0)}
 }
 
 .polaroid img{
-width:150px;
-height:150px;
-object-fit:cover;
+max-width:100%;
+height:auto;
 border-radius:6px;
 cursor:pointer;
+display:block;
 }
 
 /* COUNTDOWN */
@@ -215,6 +219,42 @@ animation:flowerFade 1.2s ease forwards;
 100%{transform:scale(1.6) translateY(-20px);opacity:0}
 }
 
+/* MOBILE */
+
+@media (max-width:600px){
+
+.container{
+padding:28px;
+}
+
+.magic-title{
+font-size:30px;
+}
+
+#desc{
+font-size:16px;
+}
+
+.photos{
+flex-direction:column;
+gap:25px;
+}
+
+.polaroid img{
+width:120px;
+height:120px;
+}
+
+.countdown h2{
+font-size:20px;
+}
+
+.time{
+font-size:18px;
+}
+
+}
+
 </style>
 </head>
 
@@ -286,7 +326,7 @@ setTimeout(typeDesc,2000);
 
 const descText=`Her name is Dinda Ayu Lestari. She is a beautiful girl who was born in Banyuwangi on January 1, 2009.
 In a way, her birth is celebrated by almost everyone in the world.
-She is truly beautiful. If you don’t think so, maybe you should go see an eye doctor, because I think something might be wrong with your eyes.
+She is truly beautiful. If you don’t think so, maybe you should go see an eye doctor.
 I love her very much, and I will always love her ✨💞`;
 
 let d=0;
@@ -331,79 +371,7 @@ days+" days 💗 "+hours+" hours 💗 "+minutes+" minutes 💗 "+seconds+" secon
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-function createHeart(){
-let heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="💜";
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(18+Math.random()*20)+"px";
-heart.style.animationDuration=(6+Math.random()*4)+"s";
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),9000);
-}
-
-setInterval(createHeart,700);
-
-function loveExplosion(e){
-
-const rect=e.target.getBoundingClientRect();
-const cx=rect.left+rect.width/2;
-const cy=rect.top+rect.height/2;
-
-for(let i=0;i<16;i++){
-
-const heart=document.createElement("div");
-heart.className="blueHeart";
-heart.innerHTML="💙";
-
-const angle=Math.random()*2*Math.PI;
-const distance=120;
-
-heart.style.left=cx+"px";
-heart.style.top=cy+"px";
-
-heart.style.setProperty("--x",Math.cos(angle)*distance+"px");
-heart.style.setProperty("--y",Math.sin(angle)*distance+"px");
-
-document.body.appendChild(heart);
-
-createSparkle(cx,cy);
-
-setTimeout(()=>heart.remove(),1600);
-}
-}
-
-function createSparkle(x,y){
-const s=document.createElement("div");
-s.className="sparkle";
-s.innerHTML="✨";
-s.style.left=(x+Math.random()*80-40)+"px";
-s.style.top=(y+Math.random()*80-40)+"px";
-document.body.appendChild(s);
-setTimeout(()=>s.remove(),1400);
-}
-
-function createFlower(x,y){
-const f=document.createElement("div");
-f.className="flowerTrail";
-f.innerHTML="🌸";
-f.style.left=x+"px";
-f.style.top=y+"px";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),1200);
-}
-
-document.addEventListener("mousemove",e=>{
-createFlower(e.clientX,e.clientY);
-});
-
-document.addEventListener("touchmove",e=>{
-let t=e.touches[0];
-createFlower(t.clientX,t.clientY);
-});
-
 </script>
 
 </body>
-
 </html>
